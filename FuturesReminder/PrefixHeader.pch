@@ -1,0 +1,28 @@
+//
+//  PrefixHeader.pch
+//  FuturesReminder
+//
+//  Created by 刘阳 on 2017/12/28.
+//  Copyright © 2017年 liuyang. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* PrefixHeader_pch */
+
+#define baseUrl @"https://stock.sina.com.cn/futures/api/jsonp.php/var_"
+
+#define LineTypeChanged @"lineTypeChanged"
+
+//商品期货 分钟线、日线
+#define minLine  @"=/InnerFuturesNewService.getFewMinLine"
+#define kline5m  @"5"
+#define kline15m @"15"
+#define kline30m @"30"
+#define kline60m @"60"
+#define klineDay @"IndexService.getInnerFuturesDailyKLine"
+#define ContractList @"https://gu.sina.cn/hq/api/openapi.php/FuturesService.getInnerDetail"
