@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "MarketViewController.h"
 #import "ConfigViewController.h"
+#import "StockViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface AppDelegate ()
@@ -29,12 +30,17 @@
 
     UITabBarController *tabBarVC=[[UITabBarController alloc]init];
     self.window.rootViewController=tabBarVC;
-    //行情
+    //期货
     MarketViewController *marketVC = [[MarketViewController alloc] init];
     UINavigationController *marketNav = [[UINavigationController alloc] initWithRootViewController:marketVC];
-    marketNav.tabBarItem.title = @"行情";
+    marketNav.tabBarItem.title = @"期货";
     marketNav.tabBarItem.badgeValue = @"1";
     [tabBarVC addChildViewController:marketNav];
+    //股票
+    StockViewController *stockVC = [[StockViewController alloc] init];
+    UINavigationController *stockNav = [[UINavigationController alloc] initWithRootViewController:stockVC];
+    stockNav.tabBarItem.title = @"股票";
+    [tabBarVC addChildViewController:stockNav];
     //设置
     ConfigViewController *configVC = [[ConfigViewController alloc] init];
     UINavigationController *configNav = [[UINavigationController alloc] initWithRootViewController:configVC];

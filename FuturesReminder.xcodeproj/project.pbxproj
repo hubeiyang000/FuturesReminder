@@ -45,6 +45,8 @@
 		CDE80ABD1F27439200B9450D /* Y_KLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE80AB51F27439200B9450D /* Y_KLineView.m */; };
 		CDE80ABE1F27439200B9450D /* Y_StockChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE80AB71F27439200B9450D /* Y_StockChartView.m */; };
 		CDE80AC11F27456200B9450D /* Y_StockChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE80AC01F27456200B9450D /* Y_StockChartViewController.m */; };
+		CDEB8BB21FFF206D00529615 /* StockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEB8BB01FFF206D00529615 /* StockViewController.m */; };
+		CDEB8BB31FFF206D00529615 /* StockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDEB8BB11FFF206D00529615 /* StockViewController.xib */; };
 		CDF7E8721FF62DD90036DEE5 /* ContractListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7E8701FF62DD90036DEE5 /* ContractListViewController.m */; };
 		CDF7E8731FF62DD90036DEE5 /* ContractListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDF7E8711FF62DD90036DEE5 /* ContractListViewController.xib */; };
 		CDF7E8761FF63D130036DEE5 /* NSDictionary+safe.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7E8751FF63D120036DEE5 /* NSDictionary+safe.m */; };
@@ -124,6 +126,9 @@
 		CDE80AB71F27439200B9450D /* Y_StockChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_StockChartView.m; sourceTree = "<group>"; };
 		CDE80ABF1F27456200B9450D /* Y_StockChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_StockChartViewController.h; sourceTree = "<group>"; };
 		CDE80AC01F27456200B9450D /* Y_StockChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_StockChartViewController.m; sourceTree = "<group>"; };
+		CDEB8BAF1FFF206D00529615 /* StockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StockViewController.h; sourceTree = "<group>"; };
+		CDEB8BB01FFF206D00529615 /* StockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StockViewController.m; sourceTree = "<group>"; };
+		CDEB8BB11FFF206D00529615 /* StockViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StockViewController.xib; sourceTree = "<group>"; };
 		CDF7E86F1FF62DD90036DEE5 /* ContractListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContractListViewController.h; sourceTree = "<group>"; };
 		CDF7E8701FF62DD90036DEE5 /* ContractListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContractListViewController.m; sourceTree = "<group>"; };
 		CDF7E8711FF62DD90036DEE5 /* ContractListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContractListViewController.xib; sourceTree = "<group>"; };
@@ -206,6 +211,9 @@
 				CDF7E8711FF62DD90036DEE5 /* ContractListViewController.xib */,
 				CDBD34FB1FFB6EC600E81861 /* CycleMonitorController.h */,
 				CDBD34FC1FFB6EC600E81861 /* CycleMonitorController.m */,
+				CDEB8BAF1FFF206D00529615 /* StockViewController.h */,
+				CDEB8BB01FFF206D00529615 /* StockViewController.m */,
+				CDEB8BB11FFF206D00529615 /* StockViewController.xib */,
 			);
 			path = FuturesReminder;
 			sourceTree = "<group>";
@@ -515,6 +523,7 @@
 				CD8E84361F23A4C5002586BB /* Assets.xcassets in Resources */,
 				CD8EB2F21F724C9800E40D2A /* wusheng.mp3 in Resources */,
 				CDBD34FA1FFB640400E81861 /* SymbolCell.xib in Resources */,
+				CDEB8BB31FFF206D00529615 /* StockViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +605,7 @@
 				CDE80AA31F27437B00B9450D /* Y_MALine.m in Sources */,
 				CD955FDE1FE35C2200797890 /* ConfigViewController.m in Sources */,
 				CDE80AC11F27456200B9450D /* Y_StockChartViewController.m in Sources */,
+				CDEB8BB21FFF206D00529615 /* StockViewController.m in Sources */,
 				CDE80A861F27433400B9450D /* Y_KLineModel.m in Sources */,
 				CDE80A931F27435B00B9450D /* Y_AccessoryMAView.m in Sources */,
 				CDE80A951F27435B00B9450D /* Y_KLineAccessoryView.m in Sources */,

@@ -9,24 +9,61 @@
 #import "NotificationManager.h"
 #import <UIKit/UIKit.h>
 
+@interface NotificationManager()
+@property (nonatomic, assign) BOOL needReminder;
+
+@property (nonatomic, strong) NSMutableArray *noReminderElements;
+
+@end
+
 @implementation NotificationManager
 
+static NotificationManager *_instance;
++(instancetype)allocWithZone:(struct _NSZone *)zone
+{
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (_instance == nil) {
+            _instance = [super allocWithZone:zone];
+            _instance.needReminder = YES;
+            _instance.noReminderElements = [[NSMutableArray alloc] initWithCapacity:1];
+        }
+    });
+    return _instance;
+}
 
 - (void)creatLocalNotificationWithDate:(NSString *)date Symbol:(NSString *)symbol type:(NSString *)type
 {
-    if([NotificationManager runningInBackground]){
-        [NotificationManager postLocalNotificationWithDate:date Symbol:symbol type:type];
-    }else if ([NotificationManager runningInForeground]){
-        [NotificationManager showAlertViewWithDate:date Symbol:symbol type:type];
+    [self.noReminderElements enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isEqualToString:date]) {
+            _needReminder = NO;
+        }
+    }];
+
+    if([NotificationManager runningInBackground] && self.needReminder){
+        [self postLocalNotificationWithDate:date Symbol:symbol type:type];
+    }else if ([NotificationManager runningInForeground] && self.needReminder){
+        [self showAlertViewWithDate:date Symbol:symbol type:type];
     }
+    
+    self.needReminder = YES;
 }
 
-+ (void)showAlertViewWithDate:(NSString *)date Symbol:(NSString *)symbol type:(NSString *)type{
+- (void)showAlertViewWithDate:(NSString *)date Symbol:(NSString *)symbol type:(NSString *)type{
     NSString *message = [NSString stringWithFormat:@"Date:%@\nsymbol:%@\nklineType:%@",date,symbol,type];
-    [[[UIAlertView alloc] initWithTitle:@"提醒" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提醒" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"不再提醒" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.noReminderElements addObject:date];
+    }];
+    [alertVC addAction:action];
+    [alertVC addAction:cancelAction];
+    [[self currentViewController] presentViewController:alertVC animated:YES completion:nil];
+//    [[[UIAlertView alloc] initWithTitle:@"提醒" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
 }
 
-+ (void)postLocalNotificationWithDate:(NSString *)date Symbol:(NSString *)symbol type:(NSString *)type{
+- (void)postLocalNotificationWithDate:(NSString *)date Symbol:(NSString *)symbol type:(NSString *)type{
     UILocalNotification *notification = [[UILocalNotification alloc]init];
     notification.fireDate           = [NSDate dateWithTimeIntervalSinceNow:10];
     notification.alertBody          = [NSString stringWithFormat:@"Date:%@\nsymbol:%@\nklineType:%@",date,symbol,type];
@@ -84,4 +121,26 @@
     return result;
 }
 
+
+//获取Window当前显示的ViewController
+- (UIViewController*)currentViewController{
+    //获得当前活动窗口的根视图
+    UIViewController* vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (1)
+    {
+        //根据不同的页面切换方式，逐步取得最上层的viewController
+        if ([vc isKindOfClass:[UITabBarController class]]) {
+            vc = ((UITabBarController*)vc).selectedViewController;
+        }
+        if ([vc isKindOfClass:[UINavigationController class]]) {
+            vc = ((UINavigationController*)vc).visibleViewController;
+        }
+        if (vc.presentedViewController) {
+            vc = vc.presentedViewController;
+        }else{
+            break;
+        }
+    }
+    return vc;
+}
 @end
